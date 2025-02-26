@@ -1,7 +1,0 @@
-serviceAccountKey.json
-
-.DS_Store
-
-node_modules/
-
-database.sqlite
