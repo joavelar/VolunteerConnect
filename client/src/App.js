@@ -1,6 +1,6 @@
-import './App.css';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from './firebase/firebaseConfig';
+import { fetchUserProfile } from './services/authService';
 
 export default function App() {
   const handleGoogle = async () => {
@@ -11,15 +11,9 @@ export default function App() {
       // Retrieve Firebase ID token
       const idToken = await result.user.getIdToken();
 
-      // Send the ID token to your backend for verification
-      const response = await fetch('http://localhost:5000/api/user/profile', {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${idToken}`, // Pass the token in the Authorization header
-        },
-      });
+      // Fetch user profile using the service
+      const data = await fetchUserProfile(idToken);
 
-      const data = await response.json(); // Response from the backend
       console.log('Backend Response:', data);
     } catch (error) {
       console.error('Error during Google Sign-In:', error.message);

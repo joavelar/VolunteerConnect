@@ -1,16 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const verifyToken = require('../middleware/auth'); // Import middleware
+const { getUserProfile } = require('../controllers/userController'); // Import controller
 
-// Secure endpoint that requires user authentication
-router.get('/profile', verifyToken, (req, res) => {
-  const { uid, email, name } = req.user; // Extracted from the decoded Firebase token
-  res.json({
-    message: 'User profile fetched successfully!',
-    uid,
-    email,
-    name,
-  });
-});
+router.get('/profile', verifyToken, getUserProfile);
 
 module.exports = router;
