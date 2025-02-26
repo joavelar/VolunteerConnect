@@ -1,12 +1,20 @@
 const express = require('express');
-const app = express();
 const cors = require('cors');
-const port = 5000; // You can change this to any port you prefer
+const userRoutes = require('./routes/userRoutes'); // Import routes
 
+const app = express();
+const port = 5000;
+
+// Middleware
 app.use(cors());
-
-// Middleware to parse JSON requests
 app.use(express.json());
+
+// Routes
+app.use('/api/user', userRoutes);
+
+app.get('/', (req, res) => {
+  res.send('Hello from the backend!');
+});
 
 app.listen(port, () => {
   console.log(`Backend server running at http://localhost:${port}`);

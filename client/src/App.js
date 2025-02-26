@@ -1,25 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { auth } from './firebase/firebaseConfig';
 
-function App() {
+export default function App() {
+  const handleGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+
+      // Retrieve Firebase ID token
+      const idToken = await result.user.getIdToken();
+
+      // Send the ID token to your backend for verification
+      const response = await fetch('http://localhost:5000/api/user/profile', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${idToken}`, // Pass the token in the Authorization header
+        },
+      });
+
+      const data = await response.json(); // Response from the backend
+      console.log('Backend Response:', data);
+    } catch (error) {
+      console.error('Error during Google Sign-In:', error.message);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div>
+        <button onClick={handleGoogle}>
+          Sign in with Google
+        </button>
+      </div>
+    </>
   );
 }
-
-export default App;
