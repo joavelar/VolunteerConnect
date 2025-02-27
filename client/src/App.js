@@ -1,6 +1,7 @@
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from './firebase/firebaseConfig';
 import { fetchUserProfile } from './services/authService';
+import Layout from './Components/layout-component/layout-component.jsx';
 
 export default function App() {
   const handleGoogle = async () => {
@@ -22,11 +23,13 @@ export default function App() {
 
   return (
     <>
-      <div>
-        <button onClick={handleGoogle}>
-          Sign in with Google
-        </button>
-      </div>
+      <Layout>
+        <div>
+          <button onClick={handleGoogle}>
+            Sign in with Google
+          </button>
+        </div>
+      </Layout>
     </>
   );
 }
