@@ -1,7 +1,7 @@
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from './firebase/firebaseConfig';
 import { fetchUserProfile } from './services/authService';
-import Layout from './Components/layout-component/layout-component';
+import Layout from './components/layout-component/layout-component';
 
 export default function App() {
   const handleGoogle = async () => {
