@@ -12,6 +12,8 @@ export default function App() {
       // Retrieve Firebase ID token
       const idToken = await result.user.getIdToken();
 
+      console.log("Your Firebase ID Token:", idToken); //remove when done
+
       // Fetch user profile using the service
       const data = await fetchUserProfile(idToken, role);
 
