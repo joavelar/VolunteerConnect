@@ -1,7 +1,7 @@
 const postModel = require('../models/postModel'); // Import the post model
 
 const createPost = async (req, res) => {
-  const { post_title, post_location, post_date, post_time, post_image_1 } = req.body;
+  const { post_title, post_location, post_content, post_date, post_time, post_image_1 } = req.body;
   const firebase_uid = req.user.uid; // The firebase_uid (UUID) from the authenticated user
 
   try {
@@ -14,7 +14,7 @@ const createPost = async (req, res) => {
     const org_id = organization.org_id; // Get the org_id (integer)
 
     // Now create the post with the correct org_id
-    const postId = await postModel.createPost(org_id, post_title, post_location, post_date, post_time, post_image_1);
+    const postId = await postModel.createPost(org_id, post_title, post_location, post_content, post_date, post_time, post_image_1);
 
     res.status(201).json({
       message: 'Post created successfully',

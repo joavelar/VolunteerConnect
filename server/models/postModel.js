@@ -10,6 +10,7 @@ db.run(`
       post_id INTEGER PRIMARY KEY AUTOINCREMENT,
       org_id INT NOT NULL,
       post_title TEXT,
+      post_content TEXT,
       post_location TEXT,
       post_date TEXT,
       post_time TEXT,
@@ -24,14 +25,14 @@ db.run(`
   `);
 
 // Function to insert a new post
-const createPost = (org_id, post_title, post_location, post_date, post_time, post_image_1) => {
+const createPost = (org_id, post_title, post_location, post_content, post_date, post_time, post_image_1) => {
   return new Promise((resolve, reject) => {
     const query = `
-      INSERT INTO posts (org_id, post_title, post_location, post_date, post_time, post_image_1)
-      VALUES (?, ?, ?, ?, ?, ?)
+      INSERT INTO posts (org_id, post_title, post_location, post_content, post_date, post_time, post_image_1)
+      VALUES (?, ?, ?, ?, ?, ?, ?)
     `;
 
-    db.run(query, [org_id, post_title, post_location, post_date, post_time, post_image_1], function (err) {
+    db.run(query, [org_id, post_title, post_location, post_content, post_date, post_time, post_image_1], function (err) {
       if (err) {
         reject(err);
       } else {
