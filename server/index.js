@@ -3,6 +3,7 @@ const cors = require('cors');
 // const userRoutes = require('./routes/userRoutes');
 const volunteerRouter = require('./routes/volRoutes.js');  // Import the volunteerRouter
 const orgRouter = require('./routes/orgRoutes.js');  // Import the organization router (similar to volunteerRouter)
+const postRouter = require('./routes/postRoutes.js')
 
 const app = express();
 const port = 4000;
@@ -15,6 +16,8 @@ app.use(express.json());
 // app.use('/api/user', userRoutes);
 app.use('/volunteers', volunteerRouter);
 app.use('/organizations', orgRouter);
+app.use('/posts', postRouter);
+
 
 app.listen(port, () => {
   console.log(`Backend server running at http://localhost:${port}`);
