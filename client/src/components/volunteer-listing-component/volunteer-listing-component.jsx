@@ -19,7 +19,10 @@ function VolunteerListing({ OrgName = "Unavailable",
         </div>
         <p className="orgStats">{Location}</p>
         <p className="orgStats">{`Spots Needed: ${NeededVolunteers}`}</p>
-        <p className="orgDescription">{Description}</p>
+        <div className="descriptionButtonContainer">
+          <p className="orgDescription">{Description.slice(0, 400) + (Description.length > 200 ? '...' : '')}</p>
+          <button className="learnMoreButton">Learn More</button>
+        </div>
       </div>
     );
   }
