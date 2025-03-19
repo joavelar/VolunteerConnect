@@ -1,4 +1,29 @@
 .volunteerListingContainer{
     display: flex;
     flex-direction: column;
+    background-color: #1C1258;
+    margin: 1rem 3rem 1rem 3rem;
+    padding: 2rem 2.5rem 2rem 2.5rem;
+    border-radius: 20px;
+}
+
+.orgTitle {
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+.orgNameTimeDateContainer{
+    display: flex;
+    gap: 0.9rem;
+}
+
+.orgStats{
+    font-weight: 100;
+    font-size: 1rem;
+}
+
+.orgDescription{
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    font-weight: 100;
 }

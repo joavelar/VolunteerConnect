@@ -1,23 +1,25 @@
 import React from "react";
 import "./volunteer-listing.css";
 
-function VolunteerListing({ OrgName = "Title Unavailable",
-                            EventName = "Event Name Unavailable",
-                            Time = "Time Unavailable",
-                            Date = "Date Unavailable",
-                            Location = "Location Unavailable",
-                            NeededVolunteers = "Volunteers Needed Unavailable",
-                            Description = "Description Unavailable"
+function VolunteerListing({ OrgName = "Unavailable",
+                            EventName = "Unavailable",
+                            Time = "Unavailable",
+                            Date = "Unavailable",
+                            Location = "Unavailable",
+                            NeededVolunteers = "Unavailable",
+                            Description = "Unavailable"
                           }) {
     return (
       <div className="volunteerListingContainer">
-        <p>{OrgName}</p>
-        <p>{EventName}</p>
-        <p>{Time}</p>
-        <p>{Date}</p>
-        <p>{Location}</p>
-        <p>{NeededVolunteers}</p>
-        <p>{Description}</p>
+        <p className="orgTitle">{OrgName}</p>
+        <div className="orgNameTimeDateContainer">
+          <p className="orgStats">{EventName}</p>
+          <p className="orgStats">{Time}</p>
+          <p className="orgStats">{Date}</p>
+        </div>
+        <p className="orgStats">{Location}</p>
+        <p className="orgStats">{`Spots Needed: ${NeededVolunteers}`}</p>
+        <p className="orgDescription">{Description}</p>
       </div>
     );
   }
