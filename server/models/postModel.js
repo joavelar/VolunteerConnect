@@ -83,12 +83,12 @@ const deletePost = (post_id, org_id) => {
 
     db.run(query, [post_id, org_id], function (err) {
       if (err) {
-        reject(err);
+        reject(err); // Only reject if it's a true database error
       } else if (this.changes === 0) {
-        // No rows updated means the post either doesn't exist or org_id didn't match
-        reject(new Error('Post not found or unauthorized'));
+        // Resolve gracefully with a status message instead of rejecting
+        resolve({ success: false, message: 'Post not found or unauthorized' });
       } else {
-        resolve({ message: 'Post deleted successfully' });
+        resolve({ success: true, message: 'Post deleted successfully' });
       }
     });
   });
