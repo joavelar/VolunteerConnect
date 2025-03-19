@@ -73,5 +73,25 @@ const getOrganizationByUID = (firebase_uid) => {
   });
 };
 
+const deletePost = (post_id, org_id) => {
+  return new Promise((resolve, reject) => {
+    const query = `
+      UPDATE posts 
+      SET is_deleted = 1
+      WHERE post_id = ? AND org_id = ?
+    `;
 
-module.exports = { createPost, getPosts, getOrganizationByUID };
+    db.run(query, [post_id, org_id], function (err) {
+      if (err) {
+        reject(err);
+      } else if (this.changes === 0) {
+        // No rows updated means the post either doesn't exist or org_id didn't match
+        reject(new Error('Post not found or unauthorized'));
+      } else {
+        resolve({ message: 'Post deleted successfully' });
+      }
+    });
+  });
+};
+
+module.exports = { createPost, getPosts, getOrganizationByUID, deletePost };
