@@ -2,13 +2,14 @@ import React from "react";
 
 import Header from "../header-component/header-component";
 import Footer from "../footer-component/footer-component";
+import VolunteerListing from "../volunteer-listing-component/volunteer-listing-component"
 import "./layout.css";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, }) => {
   return (
     <div className="layout-container">
       <Header />
-      <div className="video-overlay"></div>
+      {/* <div className="video-overlay"></div>
       <video autoPlay muted loop className="video-background">
         <source src="/volunteerVideo.mp4" type="video/mp4" />
       </video>
@@ -20,9 +21,16 @@ const Layout = ({ children }) => {
             <input type="text" placeholder="Find City" />
             <button type="button">Search</button>
           </div>
-        </div>
+        </div> */}
+        <VolunteerListing  OrgName='Volunteers'
+                           EventName="Volunteer Fest"
+                           Time="ten 0' clock"
+                           Date="March 1st"
+                           Location="Modesto"
+                           NeededVolunteers="Infinity"
+                           Description="Everyone should attend!"/>
         {/* {children} */}
-      </main>
+      {/* </main> */}
       <Footer />
     </div>
   );

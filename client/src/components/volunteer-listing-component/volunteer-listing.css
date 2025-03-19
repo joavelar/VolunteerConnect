@@ -1,0 +1,4 @@
+.volunteerListingContainer{
+    display: flex;
+    flex-direction: column;
+}
