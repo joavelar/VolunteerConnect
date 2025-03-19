@@ -73,5 +73,25 @@ const getOrganizationByUID = (firebase_uid) => {
   });
 };
 
+const deletePost = (post_id, org_id) => {
+  return new Promise((resolve, reject) => {
+    const query = `
+      UPDATE posts 
+      SET is_deleted = 1
+      WHERE post_id = ? AND org_id = ?
+    `;
 
-module.exports = { createPost, getPosts, getOrganizationByUID };
+    db.run(query, [post_id, org_id], function (err) {
+      if (err) {
+        reject(err); // Only reject if it's a true database error
+      } else if (this.changes === 0) {
+        // Resolve gracefully with a status message instead of rejecting
+        resolve({ success: false, message: 'Post not found or unauthorized' });
+      } else {
+        resolve({ success: true, message: 'Post deleted successfully' });
+      }
+    });
+  });
+};
+
+module.exports = { createPost, getPosts, getOrganizationByUID, deletePost };
