@@ -1,6 +1,8 @@
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./database.sqlite');
 
+db.run("PRAGMA foreign_keys = ON;");
+
 // Create volunteers table if not exists
 db.run(`
   CREATE TABLE IF NOT EXISTS volunteers (

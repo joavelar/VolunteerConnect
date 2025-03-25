@@ -94,4 +94,16 @@ const deletePost = (post_id, org_id) => {
   });
 };
 
-module.exports = { createPost, getPosts, getOrganizationByUID, deletePost };
+const getPostById = (post_id) => {
+  return new Promise((resolve, reject) => {
+    db.get(`SELECT * FROM posts WHERE post_id = ? AND is_deleted = 0`, [post_id], (err, row) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(row); // Resolves with post data or null if not found
+      }
+    });
+  });
+};
+
+module.exports = { createPost, getPosts, getOrganizationByUID, deletePost, getPostById };
