@@ -88,4 +88,34 @@ db.run(`
     });
   };
 
-  module.exports = { createOrgComment, getOrganizationByUID, createVolComment, getVolunteerByUID };
+  const getCommentsByPost = (post_id) => {
+    return new Promise((resolve, reject) => {
+      const query = `
+      SELECT
+        comments.comment_id,
+        comments.post_id,
+        comments.comment_text,
+        comments.comment_date,
+        comments.created_at,
+        volunteers.vol_id,
+        volunteers.name AS volunteer_name,
+        organizations.org_id,
+        organizations.name AS org_name
+      FROM comments
+      LEFT JOIN volunteers ON comments.vol_id = volunteers.vol_id
+      LEFT JOIN organizations ON comments.org_id = organizations.org_id
+      WHERE comments.post_id = ?
+      ORDER BY comments.created_at DESC;
+        `;
+
+      db.all(query, [post_id], (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+  };
+
+  module.exports = { createOrgComment, getOrganizationByUID, createVolComment, getVolunteerByUID, getCommentsByPost };

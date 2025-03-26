@@ -70,4 +70,24 @@ const createVolComment = async (req, res) => {
     }
   };
 
-module.exports = { createOrgComment, createVolComment };
+
+  const getCommentsByPost = async (req, res) => {
+    const { post_id } = req.params;
+  
+    try {
+        //check if the post exists
+        const postExists = await postModel.getPostById(post_id);
+        if (!postExists) {
+            return res.status(404).json({ message: 'Post not found' })
+        }
+
+        const comments = await commentModel.getCommentsByPost(post_id);
+
+        res.status(200).json({ comments });
+    } catch (error) {
+        console.error('Error fecthing comments:', error);
+        res.status(500).json({ message: 'Error fetching comments', error: error.message })
+    }
+  };
+
+module.exports = { createOrgComment, createVolComment, getCommentsByPost };
