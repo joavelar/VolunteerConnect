@@ -90,4 +90,58 @@ const createVolComment = async (req, res) => {
     }
   };
 
-module.exports = { createOrgComment, createVolComment, getCommentsByPost };
+   //delete comment for volunteer
+   const deleteVolComment = async (req, res) => {
+    const { comment_id } = req.params;
+    const firebase_uid = req.user.uid;
+  
+    try {
+      const volunteer = await commentModel.getVolunteerByUID(firebase_uid);
+  
+      if (!volunteer) {
+        return res.status(404).json({ message: 'Volunteer not found' });
+      }
+  
+      //attempt to delete comment
+      const result = await commentModel.deleteVolComment(comment_id, volunteer.vol_id);
+  
+      if (!result.success) {
+        return res.status(404).json({ message: result.message });
+      }
+  
+      res.status(200).json({ message: 'Comment deleted successfully' });
+  
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+      res.status(500).json({ message: 'An unexpected error occurred', error: error.message });
+    }
+  };
+
+   //delete comment for volunteer
+   const deleteOrgComment = async (req, res) => {
+    const { comment_id } = req.params;
+    const firebase_uid = req.user.uid;
+  
+    try {
+      const organization = await commentModel.getOrganizationByUID(firebase_uid);
+  
+      if (!organization) {
+        return res.status(404).json({ message: 'Organization not found' });
+      }
+  
+      //attempt to delete comment
+      const result = await commentModel.deleteOrgComment(comment_id, organization.org_id);
+  
+      if (!result.success) {
+        return res.status(404).json({ message: result.message });
+      }
+  
+      res.status(200).json({ message: 'Comment deleted successfully' });
+  
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+      res.status(500).json({ message: 'An unexpected error occurred', error: error.message });
+    }
+  };
+
+module.exports = { createOrgComment, createVolComment, getCommentsByPost, deleteVolComment, deleteOrgComment };
