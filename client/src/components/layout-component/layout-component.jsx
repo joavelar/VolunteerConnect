@@ -21,7 +21,7 @@ const Layout = ({ children, }) => {
             <button type="button">Search</button>
           </div>
         </div>
-        {/* {children} */}
+        {children}
       </main>
       <Footer />
     </div>

@@ -104,7 +104,7 @@ db.run(`
       FROM comments
       LEFT JOIN volunteers ON comments.vol_id = volunteers.vol_id
       LEFT JOIN organizations ON comments.org_id = organizations.org_id
-      WHERE comments.post_id = ?
+      WHERE comments.post_id = ? AND comments.is_deleted = 0
       ORDER BY comments.created_at DESC;
         `;
 
@@ -118,4 +118,45 @@ db.run(`
     });
   };
 
-  module.exports = { createOrgComment, getOrganizationByUID, createVolComment, getVolunteerByUID, getCommentsByPost };
+ const deleteVolComment = (comment_id, vol_id) => {
+   return new Promise((resolve, reject) => {
+     const query = `
+       UPDATE comments 
+       SET is_deleted = 1
+       WHERE comment_id = ? AND vol_id = ?
+     `;
+ 
+     db.run(query, [comment_id, vol_id], function (err) {
+       if (err) {
+         reject(err); // Only reject if it's a true database error
+       } else if (this.changes === 0) {
+         // Resolve gracefully with a status message instead of rejecting
+         resolve({ success: false, message: 'Comment not found or unauthorized' });
+       } else {
+         resolve({ success: true, message: 'Comment deleted successfully' });
+       }
+     });
+   });
+ };
+
+ const deleteOrgComment = (comment_id, org_id) => {
+  return new Promise((resolve, reject) => {
+    const query = `
+      UPDATE comments 
+      SET is_deleted = 1
+      WHERE comment_id = ? AND org_id = ?
+    `;
+
+    db.run(query, [comment_id, org_id], function (err) {
+      if (err) {
+        reject(err); 
+      } else if (this.changes === 0) {
+        resolve({ success: false, message: 'Comment not found or unauthorized' });
+      } else {
+        resolve({ success: true, message: 'Comment deleted successfully' });
+      }
+    });
+  });
+};
+
+  module.exports = { createOrgComment, getOrganizationByUID, createVolComment, getVolunteerByUID, getCommentsByPost, deleteVolComment, deleteOrgComment };
