@@ -104,7 +104,7 @@ db.run(`
       FROM comments
       LEFT JOIN volunteers ON comments.vol_id = volunteers.vol_id
       LEFT JOIN organizations ON comments.org_id = organizations.org_id
-      WHERE comments.post_id = ?
+      WHERE comments.post_id = ? AND comments.is_deleted = 0
       ORDER BY comments.created_at DESC;
         `;
 
