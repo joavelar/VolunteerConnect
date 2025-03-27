@@ -1,36 +1,20 @@
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { auth } from './firebase/firebaseConfig';
-import { fetchUserProfile } from './services/authService';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes,} from 'react-router-dom';
 import Layout from './components/layout-component/layout-component';
+import LandingPage from "./pages/landing-page/landing-page";
+import Login from "./pages/login-page/login-page";
 
 export default function App() {
-  const handleGoogle = async (role) => {
-    try {
-      const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-
-      // Retrieve Firebase ID token
-      const idToken = await result.user.getIdToken();
-
-      console.log("Your Firebase ID Token:", idToken); //remove when done
-
-      // Fetch user profile using the service
-      const data = await fetchUserProfile(idToken, role);
-
-      console.log('Backend Response:', data);
-    } catch (error) {
-      console.error('Error during Google Sign-In:', error.message);
-    }
-  };
-  
   return (
-    <>
+    <div>
       <Layout>
-        <div>
-        <button onClick={() => handleGoogle('volunteer')}>Login as Volunteer</button>
-        <button onClick={() => handleGoogle('organization')}>Login as Organization</button>
-        </div>
+        <Router>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </Router>
       </Layout>
-    </>
+    </div>
   );
 }
