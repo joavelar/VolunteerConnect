@@ -1,0 +1,80 @@
+.sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 300px; 
+  height: 100vh;
+  background-color: #ffffff;
+  transform: translateX(300px); 
+  transition: transform 0.3s ease;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+  text-align: center;
+  margin-top: 20%;
+}
+
+li {
+  padding: 15px 20px;
+}
+
+li a {
+  color: #333;
+  text-decoration: none;
+  font-size: 16px; 
+  display: block; 
+}
+
+li a:hover, li a:focus {
+  background-color: #f0f0f0;
+  width: 95%;
+  border-radius: 5px; 
+}
+
+
+.close-button {
+  position: absolute;
+  top: 10px; 
+  right: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.login-button {
+  padding: 20px;
+  text-align: center; 
+  margin-top: 20%;
+}
+
+.login-button button {
+  background: none; 
+  border: none; 
+  box-shadow: none; 
+  cursor: pointer; 
+  padding: 0; 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  width: 50%;
+  height: 50%;
+}
+
+
+.login-button button:hover {
+  opacity: 0.8; 
+}
+

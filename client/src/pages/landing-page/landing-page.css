@@ -1,0 +1,64 @@
+
+.video-background {
+    flex: 1;
+    width: 100%;
+    object-fit: cover;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    z-index: -2;
+  }
+  
+  .video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(41, 41, 94, 0.5);
+    z-index: -1;
+  }
+  
+  .content-center {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .brand-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+  }
+  
+  h2 {
+    font-size: 24px;
+    font-weight: 300;
+    margin-bottom: 2em;
+  }
+  
+  .search-bar {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .search-bar input[type="text"] {
+    padding: 12px 20px;
+    width: 50%;
+    max-width: 600px;
+    border: none;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+  }
+  
+  .search-bar button {
+    padding: 12px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: none;
+  }

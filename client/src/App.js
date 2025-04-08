@@ -6,15 +6,13 @@ import Login from "./pages/login-page/login-page";
 
 export default function App() {
   return (
-    <div>
+    <Router> 
       <Layout>
-        <Router>
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/login" element={<Login />} />
-          </Routes>
-        </Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
       </Layout>
-    </div>
+    </Router>
   );
 }
