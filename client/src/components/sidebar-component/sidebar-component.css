@@ -54,13 +54,13 @@ li a:hover, li a:focus {
 }
 
 
-.login-button {
+.loginButton {
   padding: 20px;
   text-align: center; 
   margin-top: 20%;
 }
 
-.login-button button {
+.loginButton button {
   background: none; 
   border: none; 
   box-shadow: none; 
@@ -74,7 +74,7 @@ li a:hover, li a:focus {
 }
 
 
-.login-button button:hover {
+.loginButton button:hover {
   opacity: 0.8; 
 }
 

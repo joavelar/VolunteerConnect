@@ -16,7 +16,7 @@ function Sidebar({ isOpen, toggleSidebar }) {
           <li><Link to="/volunteer">Volunteer</Link></li>
           <li><Link to="/organizations">Organizations</Link></li>
         </ul>
-        <div className="login-button">
+        <div className="loginButton">
           <Link to="/login">
             <button>
               <LoginIcon />
