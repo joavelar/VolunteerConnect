@@ -1,5 +1,5 @@
 
-.video-background {
+.videoBackground {
     flex: 1;
     width: 100%;
     object-fit: cover;
@@ -10,7 +10,7 @@
     z-index: -2;
   }
   
-  .video-overlay {
+  .videoOverlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -20,12 +20,12 @@
     z-index: -1;
   }
   
-  .content-center {
+  .contentCenter {
     text-align: center;
     padding: 20px;
   }
   
-  .brand-title {
+  .brandTitle {
     font-size: 48px;
     font-weight: 700;
     margin-bottom: 0.5em;
@@ -37,13 +37,13 @@
     margin-bottom: 2em;
   }
   
-  .search-bar {
+  .searchBar {
     margin-top: 20px;
     display: flex;
     justify-content: center;
   }
   
-  .search-bar input[type="text"] {
+  .searchBar input[type="text"] {
     padding: 12px 20px;
     width: 50%;
     max-width: 600px;
@@ -52,7 +52,7 @@
     outline: none;
   }
   
-  .search-bar button {
+  .searchBar button {
     padding: 12px 20px;
     background-color: #007BFF;
     color: white;

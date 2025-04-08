@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className={`layout-container ${isSidebarOpen ? 'pushed' : ''}`}>
+    <div className={`layoutContainer ${isSidebarOpen ? 'pushed' : ''}`}>
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <Header toggleSidebar={toggleSidebar} />
       {children}

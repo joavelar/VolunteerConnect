@@ -7,15 +7,15 @@ export default function LandingPage() {
 
     return(
         <>
-        <div className="video-overlay"></div>
-          <video autoPlay muted loop className="video-background">
+        <div className="videoOverlay"></div>
+          <video autoPlay muted loop className="videoBackground">
             <source src="volunteerVideo.mp4" type="video/mp4" />
           </video>
           <main>
-            <div className="content-center">
-              <h1 className="brand-title">VOLUNTEER CONNECT</h1>
+            <div className="contentCenter">
+              <h1 className="brandTitle">VOLUNTEER CONNECT</h1>
               <h2>Your Time. Their Future. Our Mission.</h2>
-              <div className="search-bar">
+              <div className="searchBar">
                 <input type="text" placeholder="Find City" />
                 <button type="button">Search</button>
               </div>

@@ -6,7 +6,7 @@ html, body {
   overflow-y: auto; 
 }
 
-.layout-container {
+.layoutContainer {
   display: flex;
   flex-direction: column;
   min-height: 100vh;

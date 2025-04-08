@@ -7,7 +7,7 @@ import './sidebar-component.css';
 function Sidebar({ isOpen, toggleSidebar }) {
     return (
       <div className={`sidebar ${isOpen ? 'open' : ''}`}>
-        <button className="close-button" onClick={toggleSidebar}>
+        <button className="closeButton" onClick={toggleSidebar}>
           <CloseIcon />
         </button>
         <ul>
