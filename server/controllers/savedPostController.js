@@ -26,5 +26,29 @@ const createSavedPost = async (req, res) => {
     }
   };
 
+const deleteSavedPost = async (req, res) => {
+  const { post_id } = req.body;
+  const firebase_uid = req.user.uid;
 
-module.exports = { createSavedPost };
+  try {
+    const volunteer = await savedModel.getVolunteerByUID(firebase_uid);
+    
+    if (!volunteer) {
+      return res.status(404).json({ message: "Volunteer not found" });
+    }
+
+    const result = await savedModel.deleteSavedPost(volunteer.vol_id, post_id);
+
+    if (!result.success) {
+      return res.status(404).json({ message: result.message });
+    }
+
+    res.status(200).json({ message: result.message });
+
+  } catch (error) {
+    console.error("Error deleting saved post:", error);
+    res.status(500).json({ message: "An unexpected error occurred", error: error.message });
+  }
+}
+
+module.exports = { createSavedPost, deleteSavedPost };

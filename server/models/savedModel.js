@@ -45,6 +45,29 @@ const createSavedPost = (vol_id, post_id) => {
   });
 };
 
+const deleteSavedPost = (vol_id, post_id) => {
+  return new Promise((resolve, reject) => {
+    const query = `
+      UPDATE saved
+      SET is_deleted = 1
+      WHERE vol_id = ? AND post_id = ?
+    `;
+
+    db.run(query, [vol_id, post_id], function (err) {
+      if (err) {
+        reject(err);
+      } else if (this.changes === 0) {
+        resolve({
+          success: false,
+          message: "Saved post not found or unauthorized ",
+        });
+      } else {
+        resolve({ success: true, message: "Saved post deleted successfully" });
+      }
+    });
+  });
+};
+
 const getVolunteerByUID = (firebase_uid) => {
   return new Promise((resolve, reject) => {
     db.get(
@@ -61,4 +84,4 @@ const getVolunteerByUID = (firebase_uid) => {
   });
 };
 
-module.exports = { createSavedPost, getVolunteerByUID };
+module.exports = { createSavedPost, deleteSavedPost, getVolunteerByUID };
