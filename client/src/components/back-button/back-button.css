@@ -1,0 +1,21 @@
+
+.backButtonContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1C1258;
+    border-radius: 2px;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.backButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: none;
+    background-color: transparent;
+    width: 2rem;
+    height: 2rem;
+}
