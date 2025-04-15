@@ -84,4 +84,39 @@ const getVolunteerByUID = (firebase_uid) => {
   });
 };
 
-module.exports = { createSavedPost, deleteSavedPost, getVolunteerByUID };
+const getSavedPostsByVolunteer = (vol_id) => {
+  return new Promise((resolve, reject) => {
+    const query = `
+      SELECT
+        saved.saved_id,
+        saved.post_id,
+        saved.created_at AS saved_at,
+        posts.post_title,
+        posts.post_content,
+        posts.post_location,
+        posts.post_date,
+        posts.post_time,
+        posts.post_image_1,
+        posts.post_image_2,
+        posts.post_image_3,
+        posts.post_image_4,
+        organizations.org_id,
+        organizations.name AS org_name
+      FROM saved
+      JOIN posts ON saved.post_id = posts.post_id
+      JOIN organizations ON posts.org_id = organizations.org_id
+      WHERE saved.vol_id = ? AND saved.is_deleted = 0
+      ORDER BY saved.created_at DESC
+    `;
+
+    db.all(query, [vol_id], (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      }
+    });
+  });
+};
+
+module.exports = { createSavedPost, deleteSavedPost, getVolunteerByUID, getSavedPostsByVolunteer };
