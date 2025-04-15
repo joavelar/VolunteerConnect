@@ -1,0 +1,19 @@
+
+.inputTextBoxContainer{
+    margin: 5rem;
+}
+
+.inputTextBox{
+    display: flex;
+    align-items: center;
+    border-style: solid;
+    border: 2px solid #1C1258;
+    padding: 0.2rem;
+    width: 32rem;
+    height: 5rem;
+}
+
+.inputTextBox::placeholder{
+    color: #1C1258;
+    font-weight: 400;
+}
