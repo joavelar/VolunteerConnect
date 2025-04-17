@@ -1,8 +1,4 @@
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database('./database.sqlite');
-
-// Enable foreign key constraints in SQLite (if it's not already enabled)
-db.run("PRAGMA foreign_keys = ON;");
+const db = require('../db');
 
 // Create posts table if not exists
 db.run(`
