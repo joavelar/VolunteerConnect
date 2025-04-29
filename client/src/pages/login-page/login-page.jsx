@@ -28,7 +28,12 @@ export default function Login() {
         return (
             <>
               <div className="loginContainer">
-              <InputTextBox placeholder="Name" />
+              <div className="textBoxContainer">
+                <InputTextBox placeholder="First Name" />
+                <InputTextBox placeholder="Last Name" />
+                <InputTextBox placeholder="Email" />
+                <InputTextBox placeholder="Phone Number" />
+              </div>
               <button onClick={() => handleGoogle('volunteer')}>Login as Volunteer</button>
               <button onClick={() => handleGoogle('organization')}>Login as Organization</button>
               </div>
