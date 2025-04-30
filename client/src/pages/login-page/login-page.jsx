@@ -2,7 +2,6 @@ import React from 'react';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../../firebase/firebaseConfig';
 import { fetchUserProfile } from '../../services/authService';
-import InputTextBox from '../../components/input-textbox-component/input-textbox-component';
 import './login-page.css'
 
 export default function Login() {
@@ -28,12 +27,6 @@ export default function Login() {
         return (
             <>
               <div className="loginContainer">
-              <div className="textBoxContainer">
-                <InputTextBox placeholder="First Name" />
-                <InputTextBox placeholder="Last Name" />
-                <InputTextBox placeholder="Email" />
-                <InputTextBox placeholder="Phone Number" />
-              </div>
               <button onClick={() => handleGoogle('volunteer')}>Login as Volunteer</button>
               <button onClick={() => handleGoogle('organization')}>Login as Organization</button>
               </div>
